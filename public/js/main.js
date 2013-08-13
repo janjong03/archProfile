@@ -9,6 +9,8 @@ app.config(function($routeProvider)
     templateUrl: '/templates/mainpage.html',
     controller: 'LoginCtrl'
   });
+	$routeProvider.when('/adminpage',{
+		templateUrl: '/templates/adminpage.html'});
 });
 
 app.controller("LoginCtrl", function($scope, $location, authService) {
