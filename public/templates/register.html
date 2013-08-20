@@ -1,5 +1,7 @@
 <!-- picture and basic information -->
-<div class="row">
+<!-- <div class="row">
+	<h1>Register</h1>
+	<hr>
 	<div class="large-4 columns">
 		<img src="http://placehold.it/220x200">
 	</div>
@@ -10,8 +12,20 @@
 </div>
 <div class="row">
 	<hr>
+	<table>
+		<thead>
+			<tr>
+				<td>Medical information</td>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<td>Medical information to put here</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
-<!-- certification section-->
+<!-- certification section
 <div class="row">
 	<hr>
 	<h3>Certification</h3>
@@ -20,9 +34,64 @@
 	</div>
 </div>
 
-
-<!-- footer -->
 <div class="row">
-	<hr>
-	<h5>footer here</h5>
+	<div class="large-12 columns">
+<button class="right">Register</button>
 </div>
+</div>
+-->
+<h1>Register</h1>
+<hr>
+<form ng-submit="register()">
+	<div class="row">
+		<div class="small-8">
+			<!-- Firstname -->
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="Firstname" class="right">Firstname:</label>
+				</div>
+				<div class="small-9 columns">
+					<input  type="text" id="Firstname" placeholder="Firstname" ng-model="FstName" required>
+				</div>
+			</div>
+			<!-- Lastname -->
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="Lastname" class="right">Lastname:</label>
+				</div>
+				<div class="small-9 columns">
+					<input  type="text" id="Lastname" placeholder="Lastname" ng-model="LstName" required>
+				</div>
+			</div>
+			<!-- Email -->
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="Email" class="right">Email:</label>
+				</div>
+				<div class="small-9 columns">
+					<input  type="text" id="Email" placeholder="Email" ng-model="Email" required>
+				</div>
+			</div>
+			<!-- Password -->
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="Password" class="right">Password:</label>
+				</div>
+				<div class="small-9 columns">
+					<input  type="password" id="Password" placeholder="Password" ng-model="Password" required>
+				</div>
+			</div>
+			<!-- Confirm Password -->
+			<div class="row">
+				<div class="small-3 columns">
+					<label for="ConfirmPassword" class="right">Confirm Password:</label>
+				</div>
+				<div class="small-9 columns">
+					<input  type="password" id="ConfirmPassword" placeholder="Confirm Password" required>
+				</div>
+			</div>
+						<button type="submit" class="right">Register</button>
+		</div>
+	</div>
+	
+</form>
