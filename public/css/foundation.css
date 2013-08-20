@@ -19,7 +19,9 @@ body {
   font-style: normal;
   line-height: 1;
   position: relative;
-  cursor: default; }
+  cursor: default;
+  width: auto;
+  height: auto;}
 
 a:hover {
   cursor: pointer; }
@@ -90,7 +92,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 62.5em;
+  max-width: 1024px;
   *zoom: 1; }
   .row:before, .row:after {
     content: " ";
