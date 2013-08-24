@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class AuthenticationController extends BaseController {
 
@@ -7,6 +7,8 @@ class AuthenticationController extends BaseController {
 	 *
 	 * @return Response
 	 */
+
+	 public $restful = true;
 	public function index()
 	{
 		Auth::logout();
@@ -33,22 +35,22 @@ class AuthenticationController extends BaseController {
 	public function store()
 	{
 		$credentials = array(
-		'username' => Input::get('username'),
+		'email' => Input::get('email'),
 		'password' => Input::get('password'));
 
-		if( Auth::attempt($credentials) )
-		{
-			return Response::json([
-					'user' => Auth::user()->toArray()],
-					202);
-		}
-		else{
-			return Response::json([
-				'flash' => 'Authentication failed'],
-				401
-				);
-		}
+		// if( Auth::attempt($credentials) )
+		// {
+		// 	return Response::json([
+		// 			'user' => Auth::user()->toArray()],
+		// 			202);
+		// }
+		// else{
+		// 	return Response::json([
+		// 		'flash' => 'Authentication failed'], 401
+		// 		);
+		// }
 		//
+		return Response::json($credentials,401);
 	}
 
 	/**

@@ -22,8 +22,10 @@ class users extends Seeder{
 	{
 		DB::table('users')->delete();
 		User::create(array(
-			'username' => 'max',
-			'password' => Hash::make('my_pass')
+			'email' => 'admin@example.org',
+			'password' => Hash::make('my_pass'),
+			'firstname' => 'Admin',
+			'lastname'=>''
 			));
 	}
 }

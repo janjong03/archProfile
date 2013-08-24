@@ -10,9 +10,7 @@
 <div class="row">
 	<div class="large-12 columns">
 		 <div class="large-6 large-offset-3">
-          <div id="flash" class="alert-box alert" ng-show="flash">
-            {{ flash }}
-          </div>
+
         </div>
 	<div id="view" style="margin-top:10px;" ng-view>
 </div>

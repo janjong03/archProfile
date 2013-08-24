@@ -1,48 +1,6 @@
-<!-- picture and basic information -->
-<!-- <div class="row">
-	<h1>Register</h1>
-	<hr>
-	<div class="large-4 columns">
-		<img src="http://placehold.it/220x200">
-	</div>
-	<div class="large-8 columns left panel">
-		Firstname: <INPUT name="fname" placeholder="Firstname"> <br>
-		Lastname: <input name="lname" placeholder="Lastname"><br>
-	</div>
-</div>
-<div class="row">
-	<hr>
-	<table>
-		<thead>
-			<tr>
-				<td>Medical information</td>
-			</tr>
-		</thead>	
-		<tbody>
-			<tr>
-				<td>Medical information to put here</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-<!-- certification section
-<div class="row">
-	<hr>
-	<h3>Certification</h3>
-	<div class="large-12 columns">
-		<button>Upload</button>
-	</div>
-</div>
-
-<div class="row">
-	<div class="large-12 columns">
-<button class="right">Register</button>
-</div>
-</div>
--->
 <h1>Register</h1>
 <hr>
-<form ng-submit="register()">
+<form ng-submit=register()  name="myForm">
 	<div class="row">
 		<div class="small-8">
 			<!-- Firstname -->
@@ -51,7 +9,7 @@
 					<label for="Firstname" class="right">Firstname:</label>
 				</div>
 				<div class="small-9 columns">
-					<input  type="text" id="Firstname" placeholder="Firstname" ng-model="FstName" required>
+					<input  type="text" id="Firstname" placeholder="Firstname" ng-model="credentials.firstname" required>
 				</div>
 			</div>
 			<!-- Lastname -->
@@ -60,7 +18,7 @@
 					<label for="Lastname" class="right">Lastname:</label>
 				</div>
 				<div class="small-9 columns">
-					<input  type="text" id="Lastname" placeholder="Lastname" ng-model="LstName" required>
+					<input  type="text" id="Lastname" placeholder="Lastname" ng-model="credentials.lastname" required>
 				</div>
 			</div>
 			<!-- Email -->
@@ -69,29 +27,36 @@
 					<label for="Email" class="right">Email:</label>
 				</div>
 				<div class="small-9 columns">
-					<input  type="text" id="Email" placeholder="Email" ng-model="Email" required>
+					<input  type="text" id="Email" placeholder="Email" ng-model="credentials.email" required>
 				</div>
 			</div>
 			<!-- Password -->
 			<div class="row">
 				<div class="small-3 columns">
-					<label for="Password" class="right">Password:</label>
+					<label for="pw1" class="right">Password:</label>
 				</div>
 				<div class="small-9 columns">
-					<input  type="password" id="Password" placeholder="Password" ng-model="Password" required>
+				<input type="password" id="pw1" name="pw1" ng-model="credentials.pw1" ng-required="" />
 				</div>
 			</div>
 			<!-- Confirm Password -->
 			<div class="row">
 				<div class="small-3 columns">
-					<label for="ConfirmPassword" class="right">Confirm Password:</label>
+					<label for="pw2" class="right">Confirm Password:</label>
 				</div>
 				<div class="small-9 columns">
-					<input  type="password" id="ConfirmPassword" placeholder="Confirm Password" required>
+					<input type="password" id="pw2" name="pw2" ng-model="pw2" ng-required="" pw-check="pw1" />
 				</div>
 			</div>
-						<button type="submit" class="right">Register</button>
+			<!-- Submit button -->
+			<button type="submit" class="button round right">Register</button>
 		</div>
 	</div>
-	
+	<div class="msg-block" ng-show="myForm.$error">
+	<span class="msg-error" ng-show="myForm.pw2.$error.pwmatch">
+		Passwords don't match.
+	</span>
+</div>
 </form>
+
+

@@ -23,53 +23,42 @@ app.config(function($routeProvider)
 });
 
 app.controller("LoginCtrl", function($scope, $sanitize, $location, Authenticate) {
+	$scope.credentials = {email: "", password:""};
 	$scope.login = function()
-	{Authenticate.save({
-		'username': $sanitize($scope.username),
-		'password': $sanitize($scope.password)
-
-	}, function(){
-		$scope.flash='';
+	{ Authenticate.login($scope.credentials).success(function(){
 		$location.path('/mainpage');
-	}, function(response){
-		$scope.flash = response.data.flash;
 	})
+}
+$scope.register = function(){
+	$location.path('/register');	
+}
+});
+
+app.controller("RegisterCtrl", function($scope, $sanitize, $location, Authenticate) {
+	$scope.credentials={firstname: "", lastname:"", email:"", pw1:""};
+	$scope.register = function(){
+		Authenticate.register($scope.credentials).success(function(){
+			$location.path('/login');
+		}).error(function(){
+			window.popup('error');
+		});
 	}
 });
 
-app.controller("homeCtrl", function($scope, $location, Authenticate ){
-	$scope.logout =function(){
-		Authenticate.get({}, function(){
-			$location.path('/');
-		})
-	
-	}
-});
 
-app.factory("FlashService", function($rootScope) {
-  return {
-    show: function(message) {
-      $rootScope.flash = message;
-    },
-    clear: function() {
-      $rootScope.flash = "";
-    }
-  }
-});
+// app.controller("homeCtrl", function($scope, $location, Authenticate ){
+// 	$scope.logout =function(){
+// 		Authenticate.get({}, function(){
+// 			$location.path('/');
+// 		})
 
+// 	}
+// });
 
-app.controller("CertificationCtrl", function($scope, $http)
-{
-	$http.get('todos.json').then(function(res){
-		$scope.todos =res.data;
-	});
+// app.controller("CertificationCtrl", function($scope, $http)
+// {
 
-});
-
-app.factory("Authenticate",function($resource)
-{return $resource("/service/authenticate/")
-});
-
+// });
 
 app.controller("MainCtrl", function($scope)
 {
@@ -77,10 +66,48 @@ app.controller("MainCtrl", function($scope)
 	$scope.footermessage="@ JnR Publishing limited. All rights reserved"
 });
 
-app.controller("RegisterCtrl", function($scope, $location)
-{
-	$scope.register = function()
-	{
-		$location.path('/adminpage');
+
+app.factory("Authenticate",function($http, $location){
+	return{
+		login: function(credentials)
+		{
+			return $http.post('/auth/login', credentials);
+		},	
+		register: function(credentials)
+		{
+			return $http.post('/auth/register', credentials);
+		}
 	}
-})
+});
+
+// app.factory("AuthRegister", function($resource)
+// {
+// 	return $resource("/service/authregister")
+// })
+
+
+app.factory("FlashService", function($rootScope) {
+	return {
+		show: function(message) {
+			$rootScope.flash = message;
+		},
+		clear: function() {
+			$rootScope.flash = "";
+		}
+	}
+});
+
+
+app.directive('pwCheck', function () {
+	return {
+		require: 'ngModel',
+		link: function (scope, elem, attrs, ctrl) {
+
+			var me = attrs.ngModel;
+			var matchTo = attrs.pwCheck;
+
+			scope.$watch('[me, matchTo]', function(value){
+				ctrl.$setValidity('pwmatch', scope[me] === scope[matchTo] );
+			});
+		}
+	}});

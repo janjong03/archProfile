@@ -19,5 +19,9 @@ Route::get('/', function()
 Route::group(array('prefix' => 'service'), function() {
 
 	Route::resource('authenticate', 'AuthenticationController');
+	// Route::resource('authregister', 'RegisterController');
 
 });
+
+Route::post('/auth/login', 'AuthController@login');
+Route::post('/auth/register','RegisterController@store');
