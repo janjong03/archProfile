@@ -38,9 +38,9 @@ app.controller("RegisterCtrl", function($scope, $sanitize, $location, Authentica
 	$scope.credentials={firstname: "", lastname:"", email:"", pw1:""};
 	$scope.register = function(){
 		Authenticate.register($scope.credentials).success(function(){
-			$location.path('/login');
+			$location.path('/');
 		}).error(function(){
-			window.popup('error');
+			//show error message
 		});
 	}
 });
@@ -67,23 +67,28 @@ app.controller("MainCtrl", function($scope)
 });
 
 
-app.factory("Authenticate",function($http, $location){
+app.factory("Authenticate",function($http, $location, FlashService){
+	var loginError = function(response) {
+		FlashService.show(response.flash);
+	};
+	var RegisterSuccess = function(response){
+		FlashService.show(response.flash);
+	}
 	return{
 		login: function(credentials)
 		{
-			return $http.post('/auth/login', credentials);
+			var login =$http.post('/auth/login', credentials);
+			login.error(loginError);
+			return login;
 		},	
 		register: function(credentials)
 		{
-			return $http.post('/auth/register', credentials);
+			var register= $http.post('/auth/register', credentials);
+			register.success(RegisterSuccess);
+			return register;
 		}
 	}
 });
-
-// app.factory("AuthRegister", function($resource)
-// {
-// 	return $resource("/service/authregister")
-// })
 
 
 app.factory("FlashService", function($rootScope) {
@@ -111,3 +116,4 @@ app.directive('pwCheck', function () {
 			});
 		}
 	}});
+

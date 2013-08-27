@@ -8,6 +8,11 @@
 				</div>
 			</div>
 			<div class="row">
+				<div id="flash" class="alert-box alert" ng-show="flash">
+            {{ flash }}
+          </div>
+			</div>
+			<div class="row">
 				<div class="large-6 columns">
 					<input placeholder="Username" type="text" ng-model="credentials.email" id="email" required>
 				</div>
@@ -25,17 +30,17 @@
 		<div class="row">
 			<div class="large columns">
 				<form ng-submit="register()">
-				<input type="submit" value="Register" class="button small-offset-3 columns" >
+					<input type="submit" value="Register" class="button small-offset-3 columns" >
 				</form>
 			</div>
 		</div>
-			<div class="row" ng-controller="MainCtrl">
-				<div class="large-6 large-offset-3 columns" style="border-style:double;">
-					<p style="margin:10px">
-						{{message}}
-					</p>
-				</div>
+		<div class="row" ng-controller="MainCtrl">
+			<div class="large-6 large-offset-3 columns" style="border-style:double;">
+				<p style="margin:10px">
+					{{message}}
+				</p>
 			</div>
 		</div>
 	</div>
+</div>
 
