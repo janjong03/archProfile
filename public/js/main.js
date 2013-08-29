@@ -92,18 +92,16 @@ app.factory("Authenticate",function($http, $location, FlashService){
 	var RegisterSuccess = function(response){
 		FlashService.show(response.flash);
 	}
-<<<<<<< HEAD
 	var LogoutSuccess = function(response){
 		FlashService.show(response.flash);
 	}
-=======
->>>>>>> df34aa52fd359715b1f9378e27a339b3ecde1ae9
+
 	return{
 		login: function(credentials)
 		{
 			var login =$http.post('/auth/login', credentials);
 			login.error(loginError);
-<<<<<<< HEAD
+
 			login.success(function(){
 				//todo 
 				var user =$http.get('/get/user', credentials);
@@ -115,8 +113,7 @@ app.factory("Authenticate",function($http, $location, FlashService){
 					window.alert('error');
 				})
 			});
-=======
->>>>>>> df34aa52fd359715b1f9378e27a339b3ecde1ae9
+
 			return login;
 		},	
 		register: function(credentials)
@@ -124,20 +121,17 @@ app.factory("Authenticate",function($http, $location, FlashService){
 			var register= $http.post('/auth/register', credentials);
 			register.success(RegisterSuccess);
 			return register;
-<<<<<<< HEAD
 		},
 
 		logout: function(){
 			var logout = $http.get("auth/logout");
 			logout.success(LogoutSuccess);
 			return logout;
-=======
->>>>>>> df34aa52fd359715b1f9378e27a339b3ecde1ae9
+
 		}
 	}
 });
 
-<<<<<<< HEAD
 app.factory("ImageService", function($http, $location, FlashService){
 	var uploadSuccess = function(response){
 		FlashService.show(response.flash);
@@ -158,9 +152,6 @@ app.factory("ImageService", function($http, $location, FlashService){
 		}
 
 });
-
-=======
->>>>>>> df34aa52fd359715b1f9378e27a339b3ecde1ae9
 
 app.factory("FlashService", function($rootScope) {
 	return {
