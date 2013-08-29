@@ -16,6 +16,12 @@ Route::get('/', function()
 	return View::make('singlepage');
 });
 
+Route::get('/form', function()
+{
+	return View::make('form');
+});
+Route::post('/upload', 'ImageController@upload');
+Route::get('/upload/getimage', 'ImageController@getimages');
 Route::group(array('prefix' => 'service'), function() {
 
 	Route::resource('authenticate', 'AuthenticationController');
@@ -25,3 +31,5 @@ Route::group(array('prefix' => 'service'), function() {
 
 Route::post('/auth/login', 'AuthController@login');
 Route::post('/auth/register','RegisterController@store');
+Route::get('/auth/logout', 'AuthController@logout');
+Route::get('/get/user','AuthController@getuser');
